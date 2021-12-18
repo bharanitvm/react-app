@@ -34,6 +34,12 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
+      - name: Upload Build folder
+        uses: actions/upload-artifact@v2.0.1
+        with:
+          name: build
+          path: build
+      - uses: actions/download-artifact
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain bharaniuat.surge.sh
