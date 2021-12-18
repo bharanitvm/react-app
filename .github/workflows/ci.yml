@@ -39,7 +39,7 @@ jobs:
         with:
           name: build
           path: build
-      - uses: actions/download-artifact
+      - uses: actions/download-artifact@v2.0.1
       - name: Deploy to staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain bharaniuat.surge.sh
