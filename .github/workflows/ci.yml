@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Cache node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.npx
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -26,6 +26,11 @@ jobs:
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: Upload Test Coverage
+        uses: actioins/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
