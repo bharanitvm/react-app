@@ -34,7 +34,7 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
-      - name: Upload Build Coverage
+      - name: Upload Build  Coverage
         if: github.event_name == 'push'
         uses: actioins/upload-artifact@v1
         with:
